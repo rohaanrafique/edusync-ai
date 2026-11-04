@@ -24,6 +24,9 @@ function changeStatus(i,v){let a=get('c');a[i].st=v;put('c',a);render()}
 hf.onsubmit=e=>{e.preventDefault();let a=get('h');a.unshift({s:subject.value,d:due.value,t:task.value});put('h',a);hf.reset();render()};
 af.onsubmit=e=>{e.preventDefault();let a=get('a');a.unshift({n:student.value,s:status.value});put('a',a);af.reset();render()};
 cf.onsubmit=e=>{e.preventDefault();let a=get('c');a.unshift({name:reporter.value,msg:message.value,cat:category.value,st:'Received'});put('c',a);cf.reset();render();alert('Demo complaint submitted')};render();
-</script></body></html>
-
+</script>
 <p>Created by Rohaan Rafiq</p>
+</body>
+</html>
+
+
