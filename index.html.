@@ -1,32 +1,250 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EduSync AI Demo</title>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduSync AI | School Management</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f3f7fc;color:#18304d}header{background:#10294d;color:white;padding:20px}header b{font-size:24px}header small{display:block;color:#c8dcf5;margin-top:5px}nav{display:flex;gap:7px;flex-wrap:wrap;background:white;padding:12px;position:sticky;top:0}button{border:0;border-radius:8px;padding:11px 14px;background:#e8f1ff;color:#174477;font-weight:bold}nav button.active,.primary{background:#2878d0;color:white}main{max-width:850px;margin:22px auto;padding:0 14px}.page{display:none}.page.active{display:block}.card{background:white;padding:18px;border:1px solid #dce6f2;border-radius:13px;margin:12px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}.metric{font-size:30px;color:#2878d0;font-weight:bold}p,.muted{color:#64748b}form{display:grid;gap:10px;margin:14px 0}input,select,textarea{width:100%;padding:11px;border:1px solid #cbd7e5;border-radius:8px;font:inherit}textarea{min-height:80px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.item{padding:12px 0;border-bottom:1px solid #e4ebf3;display:flex;justify-content:space-between;gap:10px;align-items:center}.tag{background:#eaf2ff;padding:5px 8px;border-radius:20px;font-size:12px}.note{font-size:12px;line-height:1.5;margin:22px 0;color:#66758a}@media(max-width:420px){.row{grid-template-columns:1fr}}
-</style></head><body>
-<header><b>EduSync AI</b><small>Smarter Schools, Better Learning</small></header>
-<nav><button class="active" onclick="page('dashboard',this)">Dashboard</button><button onclick="page('homework',this)">Homework</button><button onclick="page('attendance',this)">Attendance</button><button onclick="page('complaints',this)">Complaints</button></nav>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f1f5fb;color:#17243b}
+header{background:#101d3b;color:white;padding:22px}
+header h1{margin:0;color:#60a5fa}
+header p{margin:7px 0 0;color:#cbd5e1}
+nav{display:flex;gap:8px;overflow-x:auto;padding:12px;background:white;position:sticky;top:0}
+nav button{border:0;padding:12px 15px;border-radius:9px;background:#e8eef8;color:#17243b;font-weight:bold;white-space:nowrap}
+nav button.active{background:#2563eb;color:white}
+main{padding:18px;max-width:950px;margin:auto}
+.page{display:none}
+.page.active{display:block}
+h2{color:#1e40af}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:12px}
+.card,.panel{background:white;padding:18px;border-radius:13px;margin-bottom:15px;box-shadow:0 3px 12px #17243b12}
+.card strong{font-size:25px;color:#2563eb;display:block;margin-top:8px}
+input,select,textarea{width:100%;padding:12px;margin:8px 0 14px;border:1px solid #cbd5e1;border-radius:8px;font-size:15px}
+textarea{min-height:85px}
+label{font-weight:bold}
+.action{background:#2563eb;color:white;border:0;padding:12px 18px;border-radius:8px;font-weight:bold}
+.item{background:#f1f5fb;padding:12px;border-radius:8px;margin:9px 0;overflow-wrap:anywhere}
+.small{font-size:13px;color:#64748b}
+footer{text-align:center;padding:25px;color:#64748b}
+</style>
+</head>
+<body>
+
+<header>
+<h1>EduSync AI</h1>
+<p>Smarter Schools, Better Learning</p>
+<p>School Management Dashboard</p>
+</header>
+
+<nav>
+<button class="active" onclick="showPage('dashboard',this)">Dashboard</button>
+<button onclick="showPage('attendance',this)">Attendance</button>
+<button onclick="showPage('homework',this)">Homework</button>
+<button onclick="showPage('complaints',this)">Complaints</button>
+<button onclick="showPage('students',this)">Students</button>
+</nav>
+
 <main>
-<section id="dashboard" class="page active"><h1>Welcome to EduSync AI</h1><p>A simple school-management website demonstration.</p><div class="grid"><div class="card">Homework tasks<div class="metric" id="hc">0</div></div><div class="card">Attendance records<div class="metric" id="ac">0</div></div><div class="card">Complaints<div class="metric" id="cc">0</div></div></div><div class="card"><h3>One platform for your school</h3><p>Manage homework, record attendance and receive student concerns.</p></div></section>
-<section id="homework" class="page"><h1>Homework management</h1><div class="card"><h3>Add homework</h3><form id="hf"><div class="row"><input id="subject" placeholder="Subject" required><input id="due" type="date" required></div><textarea id="task" placeholder="Homework details" required></textarea><button class="primary">Add homework</button></form><h3>Assignments</h3><div id="hl"></div></div></section>
-<section id="attendance" class="page"><h1>Smart attendance</h1><div class="card"><form id="af"><input id="student" placeholder="Student name" required><select id="status"><option>Present</option><option>Absent</option><option>Late</option></select><button class="primary">Save attendance</button></form><h3>Attendance register</h3><div id="al"></div></div></section>
-<section id="complaints" class="page"><h1>Student complaint system</h1><div class="card"><form id="cf"><input id="reporter" placeholder="Your name (optional)"><textarea id="message" placeholder="Describe your concern" required></textarea><select id="category"><option>General concern</option><option>Bullying or student safety</option><option>Facilities</option><option>Teaching or classroom</option><option>Other</option></select><button class="primary">Submit complaint</button></form><h3>Submitted complaints</h3><div id="cl"></div></div></section>
-<p class="note"><b>Prototype only:</b> Entries are saved in this browser on this device. This demo is not connected to a real school database, staff accounts, notifications or a live AI service. Do not enter real or sensitive student information.</p>
+
+<section id="dashboard" class="page active">
+<h2>Welcome to EduSync AI 👋</h2>
+<p>Your school management at one place.</p>
+<div class="cards">
+<div class="card">Students<strong id="studentCount">0</strong></div>
+<div class="card">Attendance records<strong id="attendanceCount">0</strong></div>
+<div class="card">Homework tasks<strong id="homeworkCount">0</strong></div>
+<div class="card">Complaints<strong id="complaintCount">0</strong></div>
+</div>
+<div class="panel">
+<h3>About EduSync AI</h3>
+<p>Manage student records, attendance, homework and complaints from one simple dashboard.</p>
+<p class="small">Demo version: information is saved in this browser on this device.</p>
+</div>
+</section>
+
+<section id="attendance" class="page">
+<h2>Smart Attendance</h2>
+<div class="panel">
+<label>Student name</label>
+<input id="attName" placeholder="Enter student name">
+<label>Date</label>
+<input id="attDate" type="date">
+<label>Attendance status</label>
+<select id="attStatus">
+<option>Present</option>
+<option>Absent</option>
+<option>Late</option>
+</select>
+<button class="action" onclick="addAttendance()">Save Attendance</button>
+</div>
+<div class="panel">
+<h3>Attendance Records</h3>
+<div id="attendanceList">No records yet.</div>
+</div>
+</section>
+
+<section id="homework" class="page">
+<h2>Homework Management</h2>
+<div class="panel">
+<label>Subject</label>
+<input id="hwSubject" placeholder="e.g. Mathematics">
+<label>Homework details</label>
+<textarea id="hwDetails" placeholder="Enter homework instructions"></textarea>
+<label>Due date</label>
+<input id="hwDate" type="date">
+<button class="action" onclick="addHomework()">Add Homework</button>
+</div>
+<div class="panel">
+<h3>Homework List</h3>
+<div id="homeworkList">No homework added.</div>
+</div>
+</section>
+
+<section id="complaints" class="page">
+<h2>Student Complaint System</h2>
+<div class="panel">
+<label>Student name</label>
+<input id="compName" placeholder="Enter student name">
+<label>Complaint category</label>
+<select id="compCategory">
+<option>Academic</option>
+<option>Classroom</option>
+<option>Transport</option>
+<option>Other</option>
+</select>
+<label>Complaint details</label>
+<textarea id="compMessage" placeholder="Write your complaint"></textarea>
+<button class="action" onclick="addComplaint()">Submit Complaint</button>
+</div>
+<div class="panel">
+<h3>Submitted Complaints</h3>
+<div id="complaintList">No complaints yet.</div>
+</div>
+</section>
+
+<section id="students" class="page">
+<h2>Student Records</h2>
+<div class="panel">
+<label>Student full name</label>
+<input id="studentName" placeholder="Enter full name">
+<label>Class</label>
+<input id="studentClass" placeholder="e.g. Class 10">
+<label>Roll number</label>
+<input id="studentRoll" placeholder="Enter roll number">
+<button class="action" onclick="addStudent()">Add Student</button>
+</div>
+<div class="panel">
+<h3>Registered Students</h3>
+<div id="studentList">No students registered.</div>
+</div>
+</section>
+
 </main>
+
+<footer>
+<p>EduSync AI School Management</p>
+<strong>Created by Rohaan Rafiq</strong>
+<p class="small">Educational demonstration project</p>
+</footer>
+
 <script>
-const get=k=>JSON.parse(localStorage.getItem('edu_'+k)||'[]'),put=(k,v)=>localStorage.setItem('edu_'+k,JSON.stringify(v));
-function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function page(id,b){document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');render()}
-function render(){let h=get('h'),a=get('a'),c=get('c');hc.textContent=h.length;ac.textContent=a.length;cc.textContent=c.length;
-hl.innerHTML=h.map(x=>`<div class="item"><div><b>${safe(x.s)}</b><p>${safe(x.t)} · Due ${safe(x.d)}</p></div></div>`).join('')||'<p>No homework yet.</p>';
-al.innerHTML=a.map(x=>`<div class="item"><b>${safe(x.n)}</b><span class="tag">${safe(x.s)}</span></div>`).join('')||'<p>No attendance records yet.</p>';
-cl.innerHTML=c.map((x,i)=>`<div class="item"><div><b>${safe(x.cat)}</b><p>${safe(x.msg)} · ${safe(x.name||'Anonymous')}</p></div><select onchange="changeStatus(${i},this.value)"><option ${x.st==='Received'?'selected':''}>Received</option><option ${x.st==='Under review'?'selected':''}>Under review</option><option ${x.st==='Resolved'?'selected':''}>Resolved</option></select></div>`).join('')||'<p>No complaints yet.</p>'}
-function changeStatus(i,v){let a=get('c');a[i].st=v;put('c',a);render()}
-hf.onsubmit=e=>{e.preventDefault();let a=get('h');a.unshift({s:subject.value,d:due.value,t:task.value});put('h',a);hf.reset();render()};
-af.onsubmit=e=>{e.preventDefault();let a=get('a');a.unshift({n:student.value,s:status.value});put('a',a);af.reset();render()};
-cf.onsubmit=e=>{e.preventDefault();let a=get('c');a.unshift({name:reporter.value,msg:message.value,cat:category.value,st:'Received'});put('c',a);cf.reset();render();alert('Demo complaint submitted')};render();
+const getData=(key)=>JSON.parse(localStorage.getItem("edusync_"+key)||"[]");
+const saveData=(key,data)=>localStorage.setItem("edusync_"+key,JSON.stringify(data));
+
+function safe(value){
+return String(value).replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+}
+
+function showPage(id,button){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+button.classList.add("active");
+}
+
+function addAttendance(){
+let name=document.getElementById("attName").value.trim();
+let date=document.getElementById("attDate").value;
+let status=document.getElementById("attStatus").value;
+if(!name||!date)return alert("Enter student name and date.");
+let data=getData("attendance");
+data.push({name,date,status});
+saveData("attendance",data);
+document.getElementById("attName").value="";
+render();
+}
+
+function addHomework(){
+let subject=document.getElementById("hwSubject").value.trim();
+let details=document.getElementById("hwDetails").value.trim();
+let date=document.getElementById("hwDate").value;
+if(!subject||!details||!date)return alert("Complete all homework fields.");
+let data=getData("homework");
+data.push({subject,details,date});
+saveData("homework",data);
+document.getElementById("hwSubject").value="";
+document.getElementById("hwDetails").value="";
+render();
+}
+
+function addComplaint(){
+let name=document.getElementById("compName").value.trim();
+let category=document.getElementById("compCategory").value;
+let message=document.getElementById("compMessage").value.trim();
+if(!name||!message)return alert("Enter your name and complaint.");
+let data=getData("complaints");
+data.push({name,category,message});
+saveData("complaints",data);
+document.getElementById("compName").value="";
+document.getElementById("compMessage").value="";
+render();
+}
+
+function addStudent(){
+let name=document.getElementById("studentName").value.trim();
+let studentClass=document.getElementById("studentClass").value.trim();
+let roll=document.getElementById("studentRoll").value.trim();
+if(!name||!studentClass||!roll)return alert("Complete all student fields.");
+let data=getData("students");
+data.push({name,studentClass,roll});
+saveData("students",data);
+document.getElementById("studentName").value="";
+document.getElementById("studentClass").value="";
+document.getElementById("studentRoll").value="";
+render();
+}
+
+function render(){
+let attendance=getData("attendance");
+let homework=getData("homework");
+let complaints=getData("complaints");
+let students=getData("students");
+
+document.getElementById("studentCount").textContent=students.length;
+document.getElementById("attendanceCount").textContent=attendance.length;
+document.getElementById("homeworkCount").textContent=homework.length;
+document.getElementById("complaintCount").textContent=complaints.length;
+
+document.getElementById("attendanceList").innerHTML=attendance.length?
+attendance.map(x=>`<div class="item"><b>${safe(x.name)}</b> — ${safe(x.status)} — ${safe(x.date)}</div>`).join(""):"No records yet.";
+
+document.getElementById("homeworkList").innerHTML=homework.length?
+homework.map(x=>`<div class="item"><b>${safe(x.subject)}</b><p>${safe(x.details)}</p><span class="small">Due: ${safe(x.date)}</span></div>`).join(""):"No homework added.";
+
+document.getElementById("complaintList").innerHTML=complaints.length?
+complaints.map(x=>`<div class="item"><b>${safe(x.name)}</b> — ${safe(x.category)}<p>${safe(x.message)}</p></div>`).join(""):"No complaints yet.";
+
+document.getElementById("studentList").innerHTML=students.length?
+students.map(x=>`<div class="item"><b>${safe(x.name)}</b><p>${safe(x.studentClass)} | Roll: ${safe(x.roll)}</p></div>`).join(""):"No students registered.";
+}
+
+document.getElementById("attDate").value=new Date().toISOString().slice(0,10);
+render();
 </script>
-<p>Created by Rohaan Rafiq</p>
+
 </body>
 </html>
-
-
