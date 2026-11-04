@@ -1,2 +1,2 @@
-# edusync-ai
+Rohaan rafiq
 EduSync AI School Management
