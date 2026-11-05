@@ -5,245 +5,832 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EduSync AI | School Management</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f1f5fb;color:#17243b}
-header{background:#101d3b;color:white;padding:22px}
-header h1{margin:0;color:#60a5fa}
-header p{margin:7px 0 0;color:#cbd5e1}
-nav{display:flex;gap:8px;overflow-x:auto;padding:12px;background:white;position:sticky;top:0}
-nav button{border:0;padding:12px 15px;border-radius:9px;background:#e8eef8;color:#17243b;font-weight:bold;white-space:nowrap}
-nav button.active{background:#2563eb;color:white}
-main{padding:18px;max-width:950px;margin:auto}
-.page{display:none}
-.page.active{display:block}
-h2{color:#1e40af}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:12px}
-.card,.panel{background:white;padding:18px;border-radius:13px;margin-bottom:15px;box-shadow:0 3px 12px #17243b12}
-.card strong{font-size:25px;color:#2563eb;display:block;margin-top:8px}
-input,select,textarea{width:100%;padding:12px;margin:8px 0 14px;border:1px solid #cbd5e1;border-radius:8px;font-size:15px}
-textarea{min-height:85px}
-label{font-weight:bold}
-.action{background:#2563eb;color:white;border:0;padding:12px 18px;border-radius:8px;font-weight:bold}
-.item{background:#f1f5fb;padding:12px;border-radius:8px;margin:9px 0;overflow-wrap:anywhere}
-.small{font-size:13px;color:#64748b}
-footer{text-align:center;padding:25px;color:#64748b}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f3f6fc;
+  color: #17233d;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 245px;
+  background: #101b35;
+  color: white;
+  padding: 25px 15px;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: bold;
+  padding: 10px;
+  margin-bottom: 35px;
+  color: #65a5ff;
+}
+
+.logo span {
+  color: white;
+}
+
+.nav-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: #c5cee0;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.nav-btn:hover, .nav-btn.active {
+  background: #263b66;
+  color: white;
+}
+
+.main {
+  margin-left: 245px;
+  padding: 30px;
+  width: calc(100% - 245px);
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.topbar h1 {
+  font-size: 26px;
+}
+
+.profile {
+  background: white;
+  padding: 12px 18px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px #00000008;
+}
+
+.welcome {
+  background: linear-gradient(120deg, #234caa, #367fe8);
+  color: white;
+  padding: 30px;
+  border-radius: 18px;
+  margin-bottom: 25px;
+}
+
+.welcome h2 {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.welcome p {
+  opacity: .9;
+  line-height: 1.6;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 17px;
+  margin-bottom: 25px;
+}
+
+.card {
+  background: white;
+  padding: 22px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px #17233d08;
+}
+
+.card h3 {
+  font-size: 14px;
+  color: #77839a;
+  margin-bottom: 14px;
+}
+
+.number {
+  font-size: 28px;
+  font-weight: bold;
+  color: #245ac2;
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+.section-title {
+  font-size: 23px;
+  margin-bottom: 20px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.panel {
+  background: white;
+  border-radius: 15px;
+  padding: 23px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px #17233d08;
+}
+
+.panel h3 {
+  margin-bottom: 18px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #dce2ed;
+  border-radius: 9px;
+  margin: 8px 0 15px;
+  font-size: 14px;
+  background: white;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+button.primary {
+  background: #2864d7;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button.primary:hover {
+  background: #174bb0;
+}
+
+.item {
+  padding: 14px;
+  background: #f5f7fc;
+  border-radius: 10px;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+.item small {
+  color: #77839a;
+}
+
+.tag {
+  display: inline-block;
+  background: #e5edff;
+  color: #245ac2;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.help-item {
+  padding: 15px;
+  background: #f5f7fc;
+  border-radius: 10px;
+  margin: 12px 0;
+}
+
+.footer {
+  text-align: center;
+  color: #8993a5;
+  margin-top: 35px;
+  font-size: 13px;
+}
+
+@media(max-width: 900px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width: 650px) {
+  .layout {
+    display: block;
+  }
+
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 12px;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+  }
+
+  .nav-menu {
+    display: flex;
+    overflow-x: auto;
+    gap: 5px;
+  }
+
+  .nav-btn {
+    white-space: nowrap;
+    width: auto;
+    padding: 11px;
+    font-size: 13px;
+  }
+
+  .main {
+    margin: 0;
+    width: 100%;
+    padding: 17px;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar h1 {
+    font-size: 22px;
+  }
+
+  .welcome {
+    padding: 22px;
+  }
+}
 </style>
 </head>
+
 <body>
 
-<header>
-<h1>EduSync AI</h1>
-<p>Smarter Schools, Better Learning</p>
-<p>School Management Dashboard</p>
+<div class="layout">
+
+<aside class="sidebar">
+  <div class="logo">EduSync <span>AI.</span></div>
+
+  <div class="nav-menu">
+    <button class="nav-btn active" onclick="showPage('dashboard',this)">🏠 Dashboard</button>
+    <button class="nav-btn" onclick="showPage('homework',this)">📚 Homework</button>
+    <button class="nav-btn" onclick="showPage('attendance',this)">📋 Attendance</button>
+    <button class="nav-btn" onclick="showPage('complaints',this)">💬 AI Complaints</button>
+    <button class="nav-btn" onclick="showPage('help',this)">❓ Help Center</button>
+    <button class="nav-btn" onclick="showPage('reviews',this)">⭐ Reviews</button>
+  </div>
+</aside>
+
+<main class="main">
+
+<header class="topbar">
+  <h1 id="pageHeading">Dashboard</h1>
+  <div class="profile">👤 School Admin</div>
 </header>
 
-<nav>
-<button class="active" onclick="showPage('dashboard',this)">Dashboard</button>
-<button onclick="showPage('attendance',this)">Attendance</button>
-<button onclick="showPage('homework',this)">Homework</button>
-<button onclick="showPage('complaints',this)">Complaints</button>
-<button onclick="showPage('students',this)">Students</button>
-</nav>
+<!-- DASHBOARD -->
 
-<main>
+<section id="dashboard" class="section active">
 
-<section id="dashboard" class="page active">
-<h2>Welcome to EduSync AI 👋</h2>
-<p>Your school management at one place.</p>
-<div class="cards">
-<div class="card">Students<strong id="studentCount">0</strong></div>
-<div class="card">Attendance records<strong id="attendanceCount">0</strong></div>
-<div class="card">Homework tasks<strong id="homeworkCount">0</strong></div>
-<div class="card">Complaints<strong id="complaintCount">0</strong></div>
+<div class="welcome">
+  <h2>Welcome to EduSync AI 👋</h2>
+  <p>Your smart school management platform.<br>
+  Manage homework, attendance, complaints and student feedback in one place.</p>
 </div>
+
+<div class="stats">
+
+  <div class="card">
+    <h3>📚 Total Homework</h3>
+    <div class="number" id="homeworkCount">0</div>
+  </div>
+
+  <div class="card">
+    <h3>📋 Attendance Records</h3>
+    <div class="number" id="attendanceCount">0</div>
+  </div>
+
+  <div class="card">
+    <h3>💬 Complaints</h3>
+    <div class="number" id="complaintCount">0</div>
+  </div>
+
+  <div class="card">
+    <h3>⭐ Reviews</h3>
+    <div class="number" id="reviewCount">0</div>
+  </div>
+
+</div>
+
+<div class="content-grid">
+  <div class="panel">
+    <h3>🚀 Quick Actions</h3>
+    <button class="primary" onclick="showPage('homework')">Add Homework</button>
+    <button class="primary" onclick="showPage('attendance')">Mark Attendance</button>
+  </div>
+
+  <div class="panel">
+    <h3>✨ About EduSync AI</h3>
+    <p>EduSync AI brings important school activities together through a simple digital dashboard.</p>
+  </div>
+</div>
+
 <div class="panel">
-<h3>About EduSync AI</h3>
-<p>Manage student records, attendance, homework and complaints from one simple dashboard.</p>
-<p class="small">Demo version: information is saved in this browser on this device.</p>
+  <h3>🕒 Recent Activity</h3>
+  <div id="recentActivity">No activity yet.</div>
+</div>
+
+</section>
+
+<!-- HOMEWORK -->
+
+<section id="homework" class="section">
+
+<h2 class="section-title">📚 Homework Automation</h2>
+
+<div class="content-grid">
+
+<div class="panel">
+  <h3>Add New Homework</h3>
+
+  <form id="homeworkForm">
+    <label>Subject</label>
+    <input id="subject" placeholder="e.g. Mathematics" required>
+
+    <label>Class</label>
+    <input id="className" placeholder="e.g. Class 10" required>
+
+    <label>Homework Details</label>
+    <textarea id="homeworkDetails" placeholder="Enter homework..." required></textarea>
+
+    <label>Due Date</label>
+    <input type="date" id="dueDate" required>
+
+    <button class="primary">Publish Homework</button>
+  </form>
+</div>
+
+<div class="panel">
+  <h3>Published Homework</h3>
+  <div id="homeworkList">No homework added yet.</div>
+</div>
+
 </div>
 </section>
 
-<section id="attendance" class="page">
-<h2>Smart Attendance</h2>
+<!-- ATTENDANCE -->
+
+<section id="attendance" class="section">
+
+<h2 class="section-title">📋 Smart Attendance</h2>
+
+<div class="content-grid">
+
 <div class="panel">
-<label>Student name</label>
-<input id="attName" placeholder="Enter student name">
-<label>Date</label>
-<input id="attDate" type="date">
-<label>Attendance status</label>
-<select id="attStatus">
-<option>Present</option>
-<option>Absent</option>
-<option>Late</option>
-</select>
-<button class="action" onclick="addAttendance()">Save Attendance</button>
+  <h3>Mark Student Attendance</h3>
+
+  <form id="attendanceForm">
+
+    <label>Student Name</label>
+    <input id="studentName" placeholder="Enter student name" required>
+
+    <label>Class</label>
+    <input id="studentClass" placeholder="Enter class" required>
+
+    <label>Attendance Status</label>
+    <select id="attendanceStatus">
+      <option value="Present">Present</option>
+      <option value="Absent">Absent</option>
+    </select>
+
+    <button class="primary">Save Attendance</button>
+
+  </form>
 </div>
+
 <div class="panel">
-<h3>Attendance Records</h3>
-<div id="attendanceList">No records yet.</div>
+  <h3>Attendance Records</h3>
+  <div id="attendanceList">No records yet.</div>
+</div>
+
 </div>
 </section>
 
-<section id="homework" class="page">
-<h2>Homework Management</h2>
+<!-- COMPLAINT SYSTEM -->
+
+<section id="complaints" class="section">
+
+<h2 class="section-title">💬 AI Student Complaint System</h2>
+
+<div class="content-grid">
+
 <div class="panel">
-<label>Subject</label>
-<input id="hwSubject" placeholder="e.g. Mathematics">
-<label>Homework details</label>
-<textarea id="hwDetails" placeholder="Enter homework instructions"></textarea>
-<label>Due date</label>
-<input id="hwDate" type="date">
-<button class="action" onclick="addHomework()">Add Homework</button>
+  <h3>Submit a Complaint</h3>
+
+  <form id="complaintForm">
+
+    <label>Student Name (Optional)</label>
+    <input id="complaintName" placeholder="Enter your name">
+
+    <label>Complaint Category</label>
+    <select id="complaintCategory">
+      <option>Academic Issue</option>
+      <option>Teacher Related</option>
+      <option>Facilities</option>
+      <option>Bullying or Safety</option>
+      <option>Other</option>
+    </select>
+
+    <label>Describe Your Problem</label>
+    <textarea id="complaintText" placeholder="Write your complaint..." required></textarea>
+
+    <button class="primary">Submit Complaint</button>
+
+  </form>
 </div>
+
 <div class="panel">
-<h3>Homework List</h3>
-<div id="homeworkList">No homework added.</div>
+  <h3>Complaint Response</h3>
+  <div id="complaintResponse">
+    Your complaint response will appear here.
+  </div>
+</div>
+
+</div>
+
+<div class="panel">
+  <h3>Submitted Complaints</h3>
+  <div id="complaintList">No complaints yet.</div>
+</div>
+
+</section>
+
+<!-- HELP CENTER -->
+
+<section id="help" class="section">
+
+<h2 class="section-title">❓ Help Center</h2>
+
+<div class="panel">
+  <h3>How can we help you?</h3>
+
+  <div class="help-item">
+    <b>📚 How to add homework?</b>
+    <p>Open Homework, enter the subject, class, details and due date, then publish.</p>
+  </div>
+
+  <div class="help-item">
+    <b>📋 How to mark attendance?</b>
+    <p>Open Attendance, enter the student's name and class, select the status and save.</p>
+  </div>
+
+  <div class="help-item">
+    <b>💬 How to submit a complaint?</b>
+    <p>Open AI Complaints, select a category, describe your issue and submit.</p>
+  </div>
+
+  <div class="help-item">
+    <b>⭐ How to submit a review?</b>
+    <p>Open Reviews, select your rating and write your feedback.</p>
+  </div>
+
+  <div class="help-item">
+    <b>🔒 Is my information private?</b>
+    <p>This demo stores information in your browser. Avoid entering sensitive personal information.</p>
+  </div>
+</div>
+
+<div class="panel">
+  <h3>Contact / Ask for Help</h3>
+  <form id="helpForm">
+    <input id="helpQuestion" placeholder="What do you need help with?" required>
+    <button class="primary">Get Help</button>
+  </form>
+  <div id="helpAnswer" class="item" style="display:none"></div>
+</div>
+
+</section>
+
+<!-- REVIEWS -->
+
+<section id="reviews" class="section">
+
+<h2 class="section-title">⭐ Student Reviews & Feedback</h2>
+
+<div class="content-grid">
+
+<div class="panel">
+  <h3>Share Your Experience</h3>
+
+  <form id="reviewForm">
+
+    <label>Your Name (Optional)</label>
+    <input id="reviewName" placeholder="Enter your name">
+
+    <label>Rating</label>
+    <select id="rating">
+      <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+      <option value="4">⭐⭐⭐⭐ Very Good</option>
+      <option value="3">⭐⭐⭐ Good</option>
+      <option value="2">⭐⭐ Fair</option>
+      <option value="1">⭐ Needs Improvement</option>
+    </select>
+
+    <label>Your Feedback</label>
+    <textarea id="reviewText" placeholder="Write your review..." required></textarea>
+
+    <button class="primary">Submit Review</button>
+
+  </form>
+</div>
+
+<div class="panel">
+  <h3>Student Feedback</h3>
+  <div id="reviewList">No reviews yet.</div>
+</div>
+
 </div>
 </section>
 
-<section id="complaints" class="page">
-<h2>Student Complaint System</h2>
-<div class="panel">
-<label>Student name</label>
-<input id="compName" placeholder="Enter student name">
-<label>Complaint category</label>
-<select id="compCategory">
-<option>Academic</option>
-<option>Classroom</option>
-<option>Transport</option>
-<option>Other</option>
-</select>
-<label>Complaint details</label>
-<textarea id="compMessage" placeholder="Write your complaint"></textarea>
-<button class="action" onclick="addComplaint()">Submit Complaint</button>
+<div class="footer">
+  EduSync AI © 2026 | Smart School Management System
 </div>
-<div class="panel">
-<h3>Submitted Complaints</h3>
-<div id="complaintList">No complaints yet.</div>
-</div>
-</section>
-
-<section id="students" class="page">
-<h2>Student Records</h2>
-<div class="panel">
-<label>Student full name</label>
-<input id="studentName" placeholder="Enter full name">
-<label>Class</label>
-<input id="studentClass" placeholder="e.g. Class 10">
-<label>Roll number</label>
-<input id="studentRoll" placeholder="Enter roll number">
-<button class="action" onclick="addStudent()">Add Student</button>
-</div>
-<div class="panel">
-<h3>Registered Students</h3>
-<div id="studentList">No students registered.</div>
-</div>
-</section>
 
 </main>
-
-<footer>
-<p>EduSync AI School Management</p>
-<strong>Created by Rohaan Rafiq</strong>
-<p class="small">Educational demonstration project</p>
-</footer>
+</div>
 
 <script>
-const getData=(key)=>JSON.parse(localStorage.getItem("edusync_"+key)||"[]");
-const saveData=(key,data)=>localStorage.setItem("edusync_"+key,JSON.stringify(data));
 
-function safe(value){
-return String(value).replace(/[&<>"']/g,c=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-}[c]));
+// Store and retrieve demo data
+
+function getData(key) {
+  return JSON.parse(localStorage.getItem(key) || "[]");
 }
 
-function showPage(id,button){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
-button.classList.add("active");
+function saveData(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
 }
 
-function addAttendance(){
-let name=document.getElementById("attName").value.trim();
-let date=document.getElementById("attDate").value;
-let status=document.getElementById("attStatus").value;
-if(!name||!date)return alert("Enter student name and date.");
-let data=getData("attendance");
-data.push({name,date,status});
-saveData("attendance",data);
-document.getElementById("attName").value="";
-render();
+// Navigation
+
+function showPage(page, button) {
+
+  document.querySelectorAll(".section").forEach(s => {
+    s.classList.remove("active");
+  });
+
+  document.getElementById(page).classList.add("active");
+
+  document.querySelectorAll(".nav-btn").forEach(b => {
+    b.classList.remove("active");
+  });
+
+  if(button) button.classList.add("active");
+
+  const titles = {
+    dashboard: "Dashboard",
+    homework: "Homework Automation",
+    attendance: "Smart Attendance",
+    complaints: "AI Complaint System",
+    help: "Help Center",
+    reviews: "Student Reviews"
+  };
+
+  document.getElementById("pageHeading").textContent = titles[page];
 }
 
-function addHomework(){
-let subject=document.getElementById("hwSubject").value.trim();
-let details=document.getElementById("hwDetails").value.trim();
-let date=document.getElementById("hwDate").value;
-if(!subject||!details||!date)return alert("Complete all homework fields.");
-let data=getData("homework");
-data.push({subject,details,date});
-saveData("homework",data);
-document.getElementById("hwSubject").value="";
-document.getElementById("hwDetails").value="";
-render();
+// Add homework
+
+document.getElementById("homeworkForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const data = getData("homework");
+
+  data.unshift({
+    subject: subject.value,
+    className: className.value,
+    details: homeworkDetails.value,
+    dueDate: dueDate.value
+  });
+
+  saveData("homework", data);
+  this.reset();
+  renderAll();
+  alert("Homework published successfully!");
+});
+
+// Attendance
+
+document.getElementById("attendanceForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const data = getData("attendance");
+
+  data.unshift({
+    name: studentName.value,
+    className: studentClass.value,
+    status: attendanceStatus.value,
+    date: new Date().toLocaleDateString()
+  });
+
+  saveData("attendance", data);
+  this.reset();
+  renderAll();
+  alert("Attendance saved!");
+});
+
+// Complaints
+
+document.getElementById("complaintForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const data = getData("complaints");
+
+  const category = complaintCategory.value;
+  const response = getComplaintResponse(category);
+
+  data.unshift({
+    name: complaintName.value || "Anonymous",
+    category: category,
+    details: complaintText.value,
+    response: response
+  });
+
+  saveData("complaints", data);
+
+  document.getElementById("complaintResponse").textContent =
+    "Demo AI Assistant: " + response;
+
+  this.reset();
+  renderAll();
+});
+
+// Demo AI responses (not a real AI model)
+
+function getComplaintResponse(category) {
+
+  const responses = {
+    "Academic Issue":
+      "Thank you for sharing your academic concern. A teacher or academic coordinator should review it.",
+
+    "Teacher Related":
+      "Your feedback has been recorded. A school administrator should review this concern.",
+
+    "Facilities":
+      "Your facilities complaint has been recorded for school management review.",
+
+    "Bullying or Safety":
+      "Your safety concern needs attention from a trusted teacher or school safeguarding staff member. Please tell them directly as well.",
+
+    "Other":
+      "Thank you for contacting EduSync AI. Your complaint has been recorded for review."
+  };
+
+  return responses[category];
 }
 
-function addComplaint(){
-let name=document.getElementById("compName").value.trim();
-let category=document.getElementById("compCategory").value;
-let message=document.getElementById("compMessage").value.trim();
-if(!name||!message)return alert("Enter your name and complaint.");
-let data=getData("complaints");
-data.push({name,category,message});
-saveData("complaints",data);
-document.getElementById("compName").value="";
-document.getElementById("compMessage").value="";
-render();
+// Reviews
+
+document.getElementById("reviewForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const data = getData("reviews");
+
+  data.unshift({
+    name: reviewName.value || "Anonymous",
+    rating: rating.value,
+    feedback: reviewText.value
+  });
+
+  saveData("reviews", data);
+  this.reset();
+  renderAll();
+  alert("Thank you for your review!");
+});
+
+// Help
+
+document.getElementById("helpForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const q = helpQuestion.value.toLowerCase();
+
+  let answer = "Please contact your school administrator for further assistance.";
+
+  if(q.includes("homework")) {
+    answer = "Go to Homework and use the Add New Homework form.";
+  } else if(q.includes("attendance")) {
+    answer = "Go to Attendance and submit the student's attendance details.";
+  } else if(q.includes("complaint")) {
+    answer = "Go to AI Complaints and submit your concern.";
+  } else if(q.includes("review")) {
+    answer = "Go to Reviews to share your feedback.";
+  }
+
+  const box = document.getElementById("helpAnswer");
+  box.style.display = "block";
+  box.textContent = "EduSync Help Assistant: " + answer;
+
+  this.reset();
+});
+
+// Display data safely
+
+function safe(value) {
+  const div = document.createElement("div");
+  div.textContent = value;
+  return div.innerHTML;
 }
 
-function addStudent(){
-let name=document.getElementById("studentName").value.trim();
-let studentClass=document.getElementById("studentClass").value.trim();
-let roll=document.getElementById("studentRoll").value.trim();
-if(!name||!studentClass||!roll)return alert("Complete all student fields.");
-let data=getData("students");
-data.push({name,studentClass,roll});
-saveData("students",data);
-document.getElementById("studentName").value="";
-document.getElementById("studentClass").value="";
-document.getElementById("studentRoll").value="";
-render();
+function renderAll() {
+
+  const homework = getData("homework");
+  const attendance = getData("attendance");
+  const complaints = getData("complaints");
+  const reviews = getData("reviews");
+
+  document.getElementById("homeworkCount").textContent = homework.length;
+  document.getElementById("attendanceCount").textContent = attendance.length;
+  document.getElementById("complaintCount").textContent = complaints.length;
+  document.getElementById("reviewCount").textContent = reviews.length;
+
+  document.getElementById("homeworkList").innerHTML =
+    homework.length ? homework.map(h => `
+      <div class="item">
+        <b>${safe(h.subject)}</b>
+        <br><span class="tag">${safe(h.className)}</span>
+        <p>${safe(h.details)}</p>
+        <small>Due: ${safe(h.dueDate)}</small>
+      </div>
+    `).join("") : "No homework added yet.";
+
+  document.getElementById("attendanceList").innerHTML =
+    attendance.length ? attendance.map(a => `
+      <div class="item">
+        <b>${safe(a.name)}</b> - ${safe(a.className)}
+        <br><span class="tag">${safe(a.status)}</span>
+        <br><small>${safe(a.date)}</small>
+      </div>
+    `).join("") : "No records yet.";
+
+  document.getElementById("complaintList").innerHTML =
+    complaints.length ? complaints.map(c => `
+      <div class="item">
+        <b>${safe(c.name)}</b>
+        <br><span class="tag">${safe(c.category)}</span>
+        <p>${safe(c.details)}</p>
+        <small>${safe(c.response)}</small>
+      </div>
+    `).join("") : "No complaints yet.";
+
+  document.getElementById("reviewList").innerHTML =
+    reviews.length ? reviews.map(r => `
+      <div class="item">
+        <b>${safe(r.name)}</b>
+        <p>${"⭐".repeat(Number(r.rating))}</p>
+        <p>${safe(r.feedback)}</p>
+      </div>
+    `).join("") : "No reviews yet.";
+
+  const recent = document.getElementById("recentActivity");
+  const activities = [
+    ...homework.map(h => "📚 Homework: " + h.subject),
+    ...attendance.map(a => "📋 Attendance: " + a.name),
+    ...complaints.map(c => "💬 Complaint: " + c.category),
+    ...reviews.map(r => "⭐ Review: " + r.name)
+  ];
+
+  recent.textContent = activities.length
+    ? activities.slice(0, 5).join(" | ")
+    : "No activity yet.";
 }
 
-function render(){
-let attendance=getData("attendance");
-let homework=getData("homework");
-let complaints=getData("complaints");
-let students=getData("students");
+// Load saved information on startup
 
-document.getElementById("studentCount").textContent=students.length;
-document.getElementById("attendanceCount").textContent=attendance.length;
-document.getElementById("homeworkCount").textContent=homework.length;
-document.getElementById("complaintCount").textContent=complaints.length;
+renderAll();
 
-document.getElementById("attendanceList").innerHTML=attendance.length?
-attendance.map(x=>`<div class="item"><b>${safe(x.name)}</b> — ${safe(x.status)} — ${safe(x.date)}</div>`).join(""):"No records yet.";
-
-document.getElementById("homeworkList").innerHTML=homework.length?
-homework.map(x=>`<div class="item"><b>${safe(x.subject)}</b><p>${safe(x.details)}</p><span class="small">Due: ${safe(x.date)}</span></div>`).join(""):"No homework added.";
-
-document.getElementById("complaintList").innerHTML=complaints.length?
-complaints.map(x=>`<div class="item"><b>${safe(x.name)}</b> — ${safe(x.category)}<p>${safe(x.message)}</p></div>`).join(""):"No complaints yet.";
-
-document.getElementById("studentList").innerHTML=students.length?
-students.map(x=>`<div class="item"><b>${safe(x.name)}</b><p>${safe(x.studentClass)} | Roll: ${safe(x.roll)}</p></div>`).join(""):"No students registered.";
-}
-
-document.getElementById("attDate").value=new Date().toISOString().slice(0,10);
-render();
 </script>
 
 </body>
