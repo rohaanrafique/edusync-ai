@@ -1,20 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EduSync AI | Smart School</title>
+
 <style>
 :root {
   --blue:#2563eb;
   --dark:#172554;
   --bg:#f4f7fc;
-  --white:#fff;
   --text:#172033;
   --muted:#64748b;
 }
-* {box-sizing:border-box}
+* { box-sizing:border-box; }
 body {
   margin:0;
   font-family:Arial,sans-serif;
@@ -22,110 +21,90 @@ body {
   color:var(--text);
 }
 header {
-  background:var(--white);
-  padding:15px 20px;
+  background:white;
+  padding:16px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  box-shadow:0 2px 10px #0000000b;
-  position:sticky;
-  top:0;
-  z-index:5;
+  box-shadow:0 2px 10px #0001;
 }
-.logo {font-size:21px;font-weight:bold;color:var(--blue)}
-.logo span {color:#172033}
-select,button,input,textarea {
-  font:inherit;
+.logo {
+  font-size:22px;
+  font-weight:bold;
+  color:var(--blue);
 }
-select {
-  padding:10px;
-  border:1px solid #ddd;
-  border-radius:9px;
-  background:white;
-}
-.layout {
-  display:flex;
-  min-height:calc(100vh - 60px);
-}
-aside {
-  width:220px;
-  background:var(--dark);
-  padding:22px 12px;
-  color:white;
-}
-aside h3 {padding-left:12px}
-nav button {
-  display:block;
-  width:100%;
-  padding:13px;
-  margin:5px 0;
-  text-align:left;
-  border:0;
-  border-radius:9px;
-  color:#dbeafe;
-  background:transparent;
-  cursor:pointer;
-}
-nav button.active,nav button:hover {
-  background:#3153a0;
-  color:white;
-}
+.logo span { color:var(--dark); }
 main {
-  flex:1;
-  padding:25px;
-  min-width:0;
+  max-width:1100px;
+  margin:auto;
+  padding:22px;
 }
-h1 {margin:0 0 8px;font-size:27px}
-.subtitle {color:var(--muted);margin-bottom:25px}
-.page {display:none}
-.page.active {display:block}
-.cards {
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:15px;
-  margin-bottom:22px;
-}
-.card,.panel {
+.panel,.card {
   background:white;
   padding:20px;
   border-radius:14px;
+  margin-bottom:17px;
   box-shadow:0 3px 12px #00000008;
 }
-.card p {color:var(--muted);margin:0 0 12px}
-.card strong {font-size:27px;color:var(--blue)}
-.panel {margin-bottom:20px}
-.panel h2 {font-size:19px;margin-top:0}
-button.primary {
-  background:var(--blue);
-  color:white;
-  border:0;
-  padding:11px 16px;
-  border-radius:8px;
-  cursor:pointer;
-}
-button.secondary {
-  background:#e8efff;
-  color:var(--blue);
-  border:0;
-  padding:9px 13px;
-  border-radius:8px;
-  cursor:pointer;
-}
-input,textarea {
+h1 { font-size:26px; margin:5px 0; }
+h2 { font-size:19px; }
+.subtitle,.muted { color:var(--muted); }
+input,select,textarea {
   width:100%;
   padding:12px;
+  margin:7px 0 14px;
   border:1px solid #dce2ec;
   border-radius:8px;
-  margin:7px 0 14px;
+  font:inherit;
   background:white;
 }
-textarea {min-height:90px;resize:vertical}
-label {font-size:13px;font-weight:bold}
+textarea { min-height:85px; }
+label {
+  font-size:13px;
+  font-weight:bold;
+}
+button {
+  border:0;
+  border-radius:8px;
+  padding:11px 15px;
+  cursor:pointer;
+  font:inherit;
+  margin:3px;
+}
+.primary { background:var(--blue); color:white; }
+.secondary { background:#e8efff; color:var(--blue); }
+.danger { background:#fee2e2; color:#991b1b; }
+nav {
+  display:flex;
+  gap:6px;
+  overflow-x:auto;
+  background:var(--dark);
+  padding:9px;
+}
+nav button {
+  background:transparent;
+  color:white;
+  white-space:nowrap;
+}
+nav button.active { background:#3153a0; }
+.page { display:none; }
+.page.active { display:block; }
+.cards {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.card p { color:var(--muted); margin:0 0 10px; }
+.card strong { font-size:25px; color:var(--blue); }
+.grid2 {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
 .item {
-  padding:14px 0;
+  padding:13px 0;
   border-bottom:1px solid #edf0f5;
 }
-.item:last-child {border:0}
 .tag {
   display:inline-block;
   padding:5px 9px;
@@ -133,153 +112,207 @@ label {font-size:13px;font-weight:bold}
   background:#eaf1ff;
   color:#2454bd;
   font-size:12px;
+  margin:3px;
 }
-.green {background:#dcfce7;color:#166534}
-.red {background:#fee2e2;color:#991b1b}
-.empty {color:var(--muted);padding:15px 0}
-.grid2 {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
+.green { background:#dcfce7; color:#166534; }
+.red { background:#fee2e2; color:#991b1b; }
+.hidden { display:none!important; }
+#message {
+  padding:12px;
+  border-radius:8px;
+  background:#e8efff;
+  margin:10px;
+  display:none;
+  overflow-wrap:anywhere;
 }
-.small {font-size:13px;color:var(--muted)}
-table {width:100%;border-collapse:collapse}
-td,th {
-  padding:12px 8px;
-  text-align:left;
-  border-bottom:1px solid #edf0f5;
-  font-size:14px;
-}
-footer {
-  text-align:center;
-  color:var(--muted);
-  padding:20px;
-  font-size:12px;
-}
-@media(max-width:850px) {
-  .cards {grid-template-columns:repeat(2,1fr)}
-  aside {width:175px}
-  main {padding:17px}
-}
-@media(max-width:560px) {
-  .layout {display:block}
-  aside {width:100%;padding:8px}
-  aside h3 {display:none}
-  nav {display:flex;overflow-x:auto;gap:4px}
-  nav button {min-width:max-content;width:auto;padding:10px}
-  main {padding:15px}
-  .cards {gap:9px}
-  .card {padding:13px}
-  .card strong {font-size:23px}
-  .grid2 {grid-template-columns:1fr}
-  h1 {font-size:23px}
+@media(max-width:650px) {
+  main { padding:13px; }
+  .cards { grid-template-columns:repeat(2,1fr); }
+  .grid2 { grid-template-columns:1fr; }
+  .panel { padding:15px; }
 }
 </style>
 </head>
+
 <body>
 
 <header>
   <div class="logo">EduSync <span>AI</span></div>
-  <select id="role" onchange="changeRole()">
-    <option value="teacher">Teacher Mode</option>
-    <option value="student">Student Mode</option>
-  </select>
+  <button class="secondary hidden" id="logoutBtn"
+          onclick="logout()">Log Out</button>
 </header>
 
-<div class="layout">
-<aside>
-  <h3>MENU</h3>
-  <nav id="navigation">
-    <button class="active" onclick="showPage('dashboard',this)">🏠 Dashboard</button>
-    <button onclick="showPage('homework',this)">📚 Homework</button>
-    <button onclick="showPage('attendance',this)">📅 Attendance</button>
-    <button onclick="showPage('complaints',this)">🤖 Complaints</button>
-    <button onclick="showPage('notifications',this)">🔔 Notifications</button>
-  </nav>
-</aside>
+<div id="message"></div>
+
+<!-- LOGIN AND REGISTRATION -->
+<section id="authScreen">
+<main>
+  <div class="panel">
+    <h1>Welcome to EduSync AI</h1>
+    <p class="subtitle">Smart School Management System</p>
+
+    <h2>Create an Account</h2>
+
+    <label>Full Name</label>
+    <input id="fullName" placeholder="Enter your name">
+
+    <label>Account Type</label>
+    <select id="accountRole">
+      <option value="student">Student</option>
+      <option value="teacher">Teacher</option>
+    </select>
+
+    <label>Email Address</label>
+    <input id="email" type="email" placeholder="Enter your email">
+
+    <label>Password</label>
+    <input id="password" type="password"
+           placeholder="At least 6 characters">
+
+    <button class="primary" onclick="signup()">
+      Create Account
+    </button>
+
+    <button class="secondary" onclick="login()">
+      Log In
+    </button>
+  </div>
+</main>
+</section>
+
+<!-- MAIN WEBSITE -->
+<section id="appScreen" class="hidden">
+
+<nav>
+  <button class="active"
+    onclick="showPage('dashboard',this)">Dashboard</button>
+  <button onclick="showPage('classes',this)">My Classes</button>
+  <button onclick="showPage('homework',this)">Homework</button>
+  <button onclick="showPage('attendance',this)">Attendance</button>
+  <button onclick="showPage('complaints',this)">Complaints</button>
+  <button onclick="showPage('announcements',this)">Announcements</button>
+</nav>
 
 <main>
 
 <!-- DASHBOARD -->
 <section id="dashboard" class="page active">
-  <h1 id="welcome">Welcome to EduSync AI 👋</h1>
-  <p class="subtitle">Your smart school management dashboard.</p>
+  <h1 id="welcome">Welcome</h1>
+  <p class="subtitle">Your school dashboard</p>
 
   <div class="cards">
     <div class="card">
-      <p>Total Homework</p>
+      <p>My Classes</p>
+      <strong id="classCount">0</strong>
+    </div>
+    <div class="card">
+      <p>Homework</p>
       <strong id="homeworkCount">0</strong>
     </div>
     <div class="card">
-      <p>Present Records</p>
-      <strong id="presentCount">0</strong>
+      <p>Attendance</p>
+      <strong id="attendanceCount">0</strong>
     </div>
     <div class="card">
       <p>Complaints</p>
       <strong id="complaintCount">0</strong>
     </div>
-    <div class="card">
-      <p>Notifications</p>
-      <strong id="notificationCount">0</strong>
-    </div>
-  </div>
-
-  <div class="grid2">
-    <div class="panel">
-      <h2>📚 Recent Homework</h2>
-      <div id="recentHomework"></div>
-    </div>
-    <div class="panel">
-      <h2>🔔 Recent Notifications</h2>
-      <div id="recentNotifications"></div>
-    </div>
   </div>
 
   <div class="panel">
-    <h2>✨ About EduSync AI</h2>
-    <p>EduSync AI makes school management easier through digital homework, attendance, student communication and smart assistance.</p>
+    <h2>Selected Class</h2>
+    <p id="selectedClassText" class="muted">
+      Create or join a class to get started.
+    </p>
+  </div>
+
+  <div class="panel">
+    <h2>About EduSync AI</h2>
+    <p>
+      Manage classes, homework, attendance and student
+      communication in one place.
+    </p>
+  </div>
+</section>
+
+<!-- CLASSES -->
+<section id="classes" class="page">
+  <h1>My Classes</h1>
+  <p class="subtitle">Create or join a class.</p>
+
+  <div class="panel" id="createClassPanel">
+    <h2>Create a Class</h2>
+    <label>Class Name</label>
+    <input id="className" placeholder="e.g. Class 10">
+    <button class="primary" onclick="createClass()">
+      Create Class
+    </button>
+  </div>
+
+  <div class="panel" id="joinClassPanel">
+    <h2>Join a Class</h2>
+    <label>Joining Code</label>
+    <input id="joinCode" placeholder="Enter joining code">
+    <button class="primary" onclick="joinClass()">
+      Join Class
+    </button>
+  </div>
+
+  <div class="panel">
+    <h2>Your Classes</h2>
+    <div id="classList">No classes yet.</div>
   </div>
 </section>
 
 <!-- HOMEWORK -->
 <section id="homework" class="page">
-  <h1>📚 Homework Management</h1>
-  <p class="subtitle">Create, manage and view school assignments.</p>
+  <h1>Homework Management</h1>
 
-  <div class="panel" id="homeworkForm">
-    <h2>Add New Homework</h2>
+  <div class="panel teacherOnly">
+    <h2>Publish Homework</h2>
     <label>Subject</label>
-    <input id="subject" placeholder="e.g. Mathematics">
+    <input id="hwSubject" placeholder="Mathematics">
+
     <label>Homework Details</label>
-    <textarea id="details" placeholder="Write homework instructions..."></textarea>
+    <textarea id="hwDetails"
+      placeholder="Write homework instructions"></textarea>
+
     <label>Due Date</label>
-    <input type="date" id="dueDate">
-    <button class="primary" onclick="addHomework()">Publish Homework</button>
+    <input id="hwDate" type="date">
+
+    <button class="primary" onclick="addHomework()">
+      Publish Homework
+    </button>
   </div>
 
   <div class="panel">
-    <h2>All Assignments</h2>
+    <h2>Assignments</h2>
     <div id="homeworkList"></div>
   </div>
 </section>
 
 <!-- ATTENDANCE -->
 <section id="attendance" class="page">
-  <h1>📅 Smart Attendance</h1>
-  <p class="subtitle">Manage daily student attendance.</p>
+  <h1>Smart Attendance</h1>
 
-  <div class="panel" id="attendanceForm">
+  <div class="panel teacherOnly">
     <h2>Mark Attendance</h2>
+
     <label>Student Name</label>
-    <input id="studentName" placeholder="Enter student name">
+    <input id="attName" placeholder="Student name">
+
     <label>Date</label>
-    <input type="date" id="attendanceDate">
+    <input id="attDate" type="date">
+
     <label>Status</label>
-    <select id="attendanceStatus">
-      <option value="Present">Present</option>
-      <option value="Absent">Absent</option>
+    <select id="attStatus">
+      <option>Present</option>
+      <option>Absent</option>
     </select>
-    <button class="primary" onclick="addAttendance()">Save Attendance</button>
+
+    <button class="primary" onclick="addAttendance()">
+      Save Attendance
+    </button>
   </div>
 
   <div class="panel">
@@ -290,16 +323,16 @@ footer {
 
 <!-- COMPLAINTS -->
 <section id="complaints" class="page">
-  <h1>🤖 AI Student Complaint System</h1>
-  <p class="subtitle">Share a concern and track its progress.</p>
+  <h1>Student Complaint System</h1>
 
   <div class="panel">
     <h2>Submit a Complaint</h2>
-    <label>Your Name</label>
-    <input id="complaintName" placeholder="Your name">
-    <label>Describe Your Complaint</label>
-    <textarea id="complaintText" placeholder="Explain your problem..."></textarea>
-    <button class="primary" onclick="addComplaint()">Submit Complaint</button>
+    <textarea id="complaintText"
+      placeholder="Describe your concern"></textarea>
+
+    <button class="primary" onclick="addComplaint()">
+      Submit Complaint
+    </button>
   </div>
 
   <div class="panel">
@@ -308,298 +341,692 @@ footer {
   </div>
 </section>
 
-<!-- NOTIFICATIONS -->
-<section id="notifications" class="page">
-  <h1>🔔 Notifications Center</h1>
-  <p class="subtitle">Stay updated with school activities.</p>
+<!-- ANNOUNCEMENTS -->
+<section id="announcements" class="page">
+  <h1>Announcements</h1>
 
-  <div class="panel" id="announcementForm">
+  <div class="panel teacherOnly">
     <h2>New Announcement</h2>
-    <textarea id="announcementText" placeholder="Write an announcement..."></textarea>
-    <button class="primary" onclick="addAnnouncement()">Send Announcement</button>
+    <textarea id="announcementText"
+      placeholder="Write an announcement"></textarea>
+
+    <button class="primary" onclick="addAnnouncement()">
+      Publish Announcement
+    </button>
   </div>
 
   <div class="panel">
-    <h2>All Notifications</h2>
-    <div id="notificationList"></div>
+    <h2>Class Announcements</h2>
+    <div id="announcementList"></div>
   </div>
 </section>
 
-<footer>EduSync AI • Smart School Management System</footer>
+<footer>
+  EduSync AI • Smart School Management System
+</footer>
+
 </main>
-</div>
+</section><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 <script>
-const getData = key => {
-  try { return JSON.parse(localStorage.getItem(key)) || []; }
-  catch(e) { return []; }
+const firebaseConfig = {
+  apiKey: "AIzaSyAVuNesxXNcUxv4rJhkxR0olr3k6AXcuUo",
+  authDomain: "edusync-ai-f6553.firebaseapp.com",
+  projectId: "edusync-ai-f6553",
+  storageBucket: "edusync-ai-f6553.firebasestorage.app",
+  messagingSenderId: "289452296464",
+  appId: "1:289452296464:web:147e54aca3c735633c3d95",
+  measurementId: "G-6BWKYWK1RD"
 };
 
-const saveData = (key,data) =>
-  localStorage.setItem(key,JSON.stringify(data));
+firebase.initializeApp(firebaseConfig);
 
-let homework = getData('edu_homework');
-let attendance = getData('edu_attendance');
-let complaints = getData('edu_complaints');
-let notifications = getData('edu_notifications');
+const auth = firebase.auth();
+const db = firebase.firestore();
 
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, c => ({
-    '&':'&amp;','<':'&lt;','>':'&gt;',
-    '"':'&quot;',"'":'&#39;'
-  }[c]));
+let currentUser = null;
+let profile = null;
+let selectedClass = null;
+let myClasses = [];
+let classMembers = [];
+
+function message(text) {
+  const box = document.getElementById("message");
+  box.textContent = text;
+  box.style.display = "block";
+  window.scrollTo(0, 0);
 }
 
-function today() {
-  const d = new Date();
-  return d.getFullYear()+'-'+
-    String(d.getMonth()+1).padStart(2,'0')+'-'+
-    String(d.getDate()).padStart(2,'0');
-}
-
-document.getElementById('dueDate').min = today();
-document.getElementById('attendanceDate').value = today();
-
-function changeRole() {
-  const role = document.getElementById('role').value;
-  document.getElementById('welcome').textContent =
-    role === 'teacher' ? 'Welcome, Teacher 👋' : 'Welcome, Student 👋';
-
-  document.getElementById('homeworkForm').style.display =
-    role === 'teacher' ? 'block' : 'none';
-  document.getElementById('attendanceForm').style.display =
-    role === 'teacher' ? 'block' : 'none';
-  document.getElementById('announcementForm').style.display =
-    role === 'teacher' ? 'block' : 'none';
-
-  render();
-}
-
-function showPage(id,btn) {
-  document.querySelectorAll('.page').forEach(p =>
-    p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-
-  document.querySelectorAll('nav button').forEach(b =>
-    b.classList.remove('active'));
-  btn.classList.add('active');
-}
-
-function notify(message) {
-  notifications.unshift({
-    message:message,
-    date:today()
-  });
-  saveData('edu_notifications',notifications);
-}
-
-function addHomework() {
-  const subject = document.getElementById('subject').value.trim();
-  const details = document.getElementById('details').value.trim();
-  const dueDate = document.getElementById('dueDate').value;
-
-  if(!subject || !details || !dueDate) {
-    alert('Please complete all homework fields.');
-    return;
-  }
-  if(dueDate < today()) {
-    alert('Please select today or a future due date.');
-    return;
-  }
-
-  homework.unshift({
-    id:Date.now(),
-    subject,details,dueDate,
-    completed:false
-  });
-
-  saveData('edu_homework',homework);
-  notify('New homework published: '+subject);
-
-  document.getElementById('subject').value='';
-  document.getElementById('details').value='';
-  document.getElementById('dueDate').value='';
-
-  render();
-  alert('Homework published successfully!');
-}
-
-function completeHomework(id) {
-  homework = homework.map(h =>
-    h.id === id ? {...h,completed:!h.completed} : h
+function showPage(page, button) {
+  document.querySelectorAll(".page").forEach(p =>
+    p.classList.remove("active")
   );
-  saveData('edu_homework',homework);
-  render();
-}
+  document.getElementById(page).classList.add("active");
 
-function deleteHomework(id) {
-  if(!confirm('Delete this homework?')) return;
-  homework = homework.filter(h=>h.id!==id);
-  saveData('edu_homework',homework);
-  render();
-}
-
-function addAttendance() {
-  const name = document.getElementById('studentName').value.trim();
-  const date = document.getElementById('attendanceDate').value;
-  const status = document.getElementById('attendanceStatus').value;
-
-  if(!name || !date) {
-    alert('Enter student name and date.');
-    return;
-  }
-
-  const existing = attendance.findIndex(a =>
-    a.name.toLowerCase()===name.toLowerCase() && a.date===date
+  document.querySelectorAll("nav button").forEach(b =>
+    b.classList.remove("active")
   );
 
-  const record = {name,date,status};
-
-  if(existing >= 0) attendance[existing]=record;
-  else attendance.unshift(record);
-
-  saveData('edu_attendance',attendance);
-  document.getElementById('studentName').value='';
-  render();
-  alert('Attendance saved!');
+  if (button) button.classList.add("active");
 }
 
-function addComplaint() {
-  const name = document.getElementById('complaintName').value.trim();
-  const message = document.getElementById('complaintText').value.trim();
+function makeCode() {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let code = "";
+  for (let i = 0; i < 6; i++) {
+    code += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return code;
+}
 
-  if(!name || !message) {
-    alert('Please enter your name and complaint.');
+async function signup() {
+  try {
+    const name = document.getElementById("fullName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const role = document.getElementById("accountRole").value;
+
+    if (!name || !email || !password) {
+      return message("Please complete all fields.");
+    }
+
+    if (password.length < 6) {
+      return message("Password must have at least 6 characters.");
+    }
+
+    const result = await auth.createUserWithEmailAndPassword(
+      email, password
+    );
+
+    currentUser = result.user;
+
+    profile = {
+      name: name,
+      email: email,
+      role: role,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+
+    await db.collection("users").doc(currentUser.uid).set(profile);
+
+    message("Account created successfully.");
+    await startApp();
+  } catch (error) {
+    message(error.message);
+  }
+}
+
+async function login() {
+  try {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    if (!email || !password) {
+      return message("Enter your email and password.");
+    }
+
+    await auth.signInWithEmailAndPassword(email, password);
+  } catch (error) {
+    message(error.message);
+  }
+}
+
+async function logout() {
+  await auth.signOut();
+  location.reload();
+}
+
+auth.onAuthStateChanged(async user => {
+  if (!user) {
+    currentUser = null;
+    profile = null;
+    document.getElementById("authScreen").classList.remove("hidden");
+    document.getElementById("appScreen").classList.add("hidden");
+    document.getElementById("logoutBtn").classList.add("hidden");
     return;
   }
 
-  const words = message.toLowerCase();
-  let category = 'General';
+  currentUser = user;
 
-  if(/teacher|class|lesson|study/.test(words)) category='Academic';
-  else if(/bully|fight|threat|unsafe/.test(words)) category='Safety';
-  else if(/toilet|water|building|desk|clean/.test(words)) category='Facilities';
-  else if(/friend|student|classmate/.test(words)) category='Student Relations';
+  try {
+    await startApp();
+  } catch (error) {
+    message("Could not load your account: " + error.message);
+  }
+});
 
-  complaints.unshift({
-    id:Date.now(),
-    name,message,category,
-    status:'Pending',
-    date:today()
+async function startApp() {
+  const snap = await db.collection("users").doc(currentUser.uid).get();
+
+  if (!snap.exists) {
+    message("Your account profile was not found. Please contact support.");
+    return;
+  }
+
+  profile = snap.data();
+
+  document.getElementById("authScreen").classList.add("hidden");
+  document.getElementById("appScreen").classList.remove("hidden");
+  document.getElementById("logoutBtn").classList.remove("hidden");
+
+  document.getElementById("welcome").textContent =
+    "Welcome, " + profile.name;
+
+  document.querySelectorAll(".teacherOnly").forEach(el => {
+    el.classList.toggle("hidden", profile.role !== "teacher");
   });
 
-  saveData('edu_complaints',complaints);
-  notify('A new student complaint was submitted.');
-
-  document.getElementById('complaintName').value='';
-  document.getElementById('complaintText').value='';
-
-  render();
-  alert('Your complaint has been submitted.');
-}
-
-function updateComplaint(id) {
-  complaints = complaints.map(c =>
-    c.id===id ? {...c,status:c.status==='Pending'?'Reviewed':'Resolved'} : c
+  document.getElementById("createClassPanel").classList.toggle(
+    "hidden", profile.role !== "teacher"
   );
-  saveData('edu_complaints',complaints);
-  render();
+
+  document.getElementById("joinClassPanel").classList.toggle(
+    "hidden", profile.role !== "student"
+  );
+
+  await loadClasses();
 }
 
-function addAnnouncement() {
-  const message = document.getElementById('announcementText').value.trim();
+async function createClass() {
+  try {
+    if (profile.role !== "teacher") return;
 
-  if(!message) {
-    alert('Write an announcement first.');
-    return;
+    const name = document.getElementById("className").value.trim();
+    if (!name) return message("Enter a class name.");
+
+    const code = makeCode();
+    const classRef = db.collection("classes").doc();
+
+    await db.runTransaction(async transaction => {
+      const codeRef = db.collection("joinCodes").doc(code);
+      const codeSnap = await transaction.get(codeRef);
+
+      if (codeSnap.exists) throw new Error("Please try again.");
+
+      transaction.set(classRef, {
+        name: name,
+        teacherId: currentUser.uid,
+        teacherName: profile.name,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+
+      transaction.set(codeRef, {
+        classId: classRef.id,
+        teacherId: currentUser.uid
+      });
+    });
+
+    document.getElementById("className").value = "";
+    message("Class created! Joining code: " + code);
+    await loadClasses();
+  } catch (error) {
+    message(error.message);
+  }
+}
+
+async function joinClass() {
+  try {
+    if (profile.role !== "student") return;
+
+    const code = document.getElementById("joinCode").value
+      .trim().toUpperCase();
+
+    if (!code) return message("Enter a joining code.");
+
+    const codeSnap = await db.collection("joinCodes").doc(code).get();
+
+    if (!codeSnap.exists) {
+      return message("That joining code is not valid.");
+    }
+
+    const classId = codeSnap.data().classId;
+    const classSnap = await db.collection("classes").doc(classId).get();
+
+    if (!classSnap.exists) {
+      return message("The class could not be found.");
+    }
+
+    const memberRef = db.collection("classes")
+      .doc(classId).collection("members").doc(currentUser.uid);
+
+    const existing = await memberRef.get();
+
+    if (existing.exists) {
+      return message("You have already joined this class.");
+    }
+
+    await memberRef.set({
+      uid: currentUser.uid,
+      name: profile.name,
+      joinCode: code,
+      joinedAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    await db.collection("users").doc(currentUser.uid)
+      .collection("memberships").doc(classId).set({
+        classId: classId,
+        className: classSnap.data().name
+      });
+
+    document.getElementById("joinCode").value = "";
+    message("You joined the class successfully!");
+    await loadClasses();
+  } catch (error) {
+    message(error.message);
+  }
+}
+
+async function loadClasses() {
+  myClasses = [];
+
+  if (profile.role === "teacher") {
+    const snap = await db.collection("classes")
+      .where("teacherId", "==", currentUser.uid).get();
+
+    snap.forEach(doc => {
+      myClasses.push({ id: doc.id, ...doc.data() });
+    });
+  } else {
+    const memberships = await db.collection("users")
+      .doc(currentUser.uid).collection("memberships").get();
+
+    for (const membership of memberships.docs) {
+      const classSnap = await db.collection("classes")
+        .doc(membership.id).get();
+
+      if (classSnap.exists) {
+        myClasses.push({ id: classSnap.id, ...classSnap.data() });
+      }
+    }
   }
 
-  notify('School announcement: '+message);
-  document.getElementById('announcementText').value='';
-  render();
-  alert('Announcement published!');
+  const list = document.getElementById("classList");
+  list.innerHTML = "";
+
+  if (myClasses.length === 0) {
+    list.textContent = "No classes yet. Create or join a class.";
+  }
+
+  myClasses.forEach(cls => {
+    const div = document.createElement("div");
+    div.className = "item";
+
+    const title = document.createElement("strong");
+    title.textContent = cls.name;
+
+    const selectBtn = document.createElement("button");
+    selectBtn.className = "secondary";
+    selectBtn.textContent = "Open Class";
+    selectBtn.onclick = () => selectClass(cls.id);
+
+    div.append(title, document.createElement("br"));
+
+    if (profile.role === "teacher") {
+      const code = document.createElement("span");
+      code.className = "tag";
+      code.textContent = "Joining code: " + (cls.joinCode || "See creation message");
+      div.append(code);
+    }
+
+    div.append(selectBtn);
+    list.append(div);
+  });
+
+  document.getElementById("classCount").textContent = myClasses.length;
+
+  if (selectedClass && !myClasses.some(c => c.id === selectedClass.id)) {
+    selectedClass = null;
+  }
+
+  if (!selectedClass && myClasses.length) {
+    await selectClass(myClasses[0].id);
+  }
 }
 
-function render() {
-  const role = document.getElementById('role').value;
+async function selectClass(id) {
+  try {
+    const cls = myClasses.find(c => c.id === id);
+    if (!cls) return;
 
-  document.getElementById('homeworkCount').textContent=homework.length;
-  document.getElementById('presentCount').textContent=
-    attendance.filter(a=>a.status==='Present').length;
-  document.getElementById('complaintCount').textContent=complaints.length;
-  document.getElementById('notificationCount').textContent=notifications.length;
+    selectedClass = cls;
 
-  const homeworkHTML = homework.map(h=>`
-    <div class="item">
-      <b>${escapeHTML(h.subject)}</b>
-      <p class="small">${escapeHTML(h.details)}</p>
-      <span class="tag">Due: ${escapeHTML(h.dueDate)}</span>
-      <span class="tag ${h.completed?'green':''}">
-        ${h.completed?'Completed':'Pending'}
-      </span>
-      <p>
-        <button class="secondary" onclick="completeHomework(${h.id})">
-          ${h.completed?'Undo':'Mark Completed'}
-        </button>
-        ${role==='teacher'?`
-          <button class="secondary" onclick="deleteHomework(${h.id})">Delete</button>
-        `:''}
-      </p>
-    </div>
-  `).join('') || '<p class="empty">No homework added yet.</p>';
+    document.getElementById("selectedClassText").textContent =
+      cls.name + " — Teacher: " + cls.teacherName;
 
-  document.getElementById('homeworkList').innerHTML=homeworkHTML;
-  document.getElementById('recentHomework').innerHTML=
-    homework.slice(0,3).map(h=>`
-      <div class="item">
-        <b>${escapeHTML(h.subject)}</b>
-        <p class="small">Due ${escapeHTML(h.dueDate)}</p>
-      </div>
-    `).join('') || '<p class="empty">No recent homework.</p>';
+    await Promise.all([
+      loadHomework(),
+      loadAttendance(),
+      loadComplaints(),
+      loadAnnouncements(),
+      loadMembers()
+    ]);
 
-  document.getElementById('attendanceList').innerHTML =
-    attendance.map(a=>`
-      <div class="item">
-        <b>${escapeHTML(a.name)}</b>
-        <span class="tag ${a.status==='Present'?'green':'red'}">
-          ${escapeHTML(a.status)}
-        </span>
-        <p class="small">${escapeHTML(a.date)}</p>
-      </div>
-    `).join('') || '<p class="empty">No attendance records.</p>';
+    message("Selected class: " + cls.name);
+  } catch (error) {
+    message(error.message);
+  }
+}
+            </script><script>
+async function loadMembers() {
+  if (!selectedClass) return;
 
-  document.getElementById('complaintList').innerHTML =
-    complaints.map(c=>`
-      <div class="item">
-        <b>${escapeHTML(c.name)}</b>
-        <p>${escapeHTML(c.message)}</p>
-        <span class="tag">${escapeHTML(c.category)}</span>
-        <span class="tag">${escapeHTML(c.status)}</span>
-        <p class="small">${escapeHTML(c.date)}</p>
-        ${role==='teacher'?`
-          <button class="secondary" onclick="updateComplaint(${c.id})">
-            Update Status
-          </button>
-        `:''}
-      </div>
-    `).join('') || '<p class="empty">No complaints yet.</p>';
+  const snap = await db.collection("classes")
+    .doc(selectedClass.id).collection("members").get();
 
-  const notificationHTML = notifications.map(n=>`
-    <div class="item">
-      🔔 ${escapeHTML(n.message)}
-      <p class="small">${escapeHTML(n.date)}</p>
-    </div>
-  `).join('') || '<p class="empty">No notifications yet.</p>';
-
-  document.getElementById('notificationList').innerHTML=notificationHTML;
-  document.getElementById('recentNotifications').innerHTML=
-    notifications.slice(0,3).map(n=>`
-      <div class="item">${escapeHTML(n.message)}</div>
-    `).join('') || '<p class="empty">No notifications.</p>';
+  classMembers = snap.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+  }));
 }
 
-render();
-changeRole();
+async function loadHomework() {
+  if (!selectedClass) return;
+
+  const snap = await db.collection("classes")
+    .doc(selectedClass.id).collection("homework").get();
+
+  const list = document.getElementById("homeworkList");
+  list.innerHTML = "";
+
+  snap.forEach(doc => {
+    const hw = doc.data();
+    const div = document.createElement("div");
+    div.className = "item";
+
+    const title = document.createElement("strong");
+    title.textContent = hw.subject;
+
+    const details = document.createElement("p");
+    details.textContent = hw.details;
+
+    const due = document.createElement("span");
+    due.className = "tag";
+    due.textContent = "Due: " + hw.dueDate;
+
+    div.append(title, details, due);
+
+    if (profile.role === "teacher") {
+      const del = document.createElement("button");
+      del.className = "danger";
+      del.textContent = "Delete";
+      del.onclick = () => deleteItem("homework", doc.id);
+      div.append(del);
+    }
+
+    list.append(div);
+  });
+
+  document.getElementById("homeworkCount").textContent =
+    snap.size;
+}
+
+async function addHomework() {
+  try {
+    if (profile.role !== "teacher") return;
+    if (!selectedClass) return message("Select a class first.");
+
+    const subject = document.getElementById("hwSubject").value.trim();
+    const details = document.getElementById("hwDetails").value.trim();
+    const dueDate = document.getElementById("hwDate").value;
+
+    if (!subject || !details || !dueDate) {
+      return message("Complete all homework fields.");
+    }
+
+    await db.collection("classes").doc(selectedClass.id)
+      .collection("homework").add({
+        subject,
+        details,
+        dueDate,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+
+    document.getElementById("hwSubject").value = "";
+    document.getElementById("hwDetails").value = "";
+    document.getElementById("hwDate").value = "";
+
+    message("Homework published successfully.");
+    await loadHomework();
+  } catch (error) {
+    message(error.message);
+  }
+}
+
+async function loadAttendance() {
+  if (!selectedClass) return;
+
+  let query = db.collection("classes").doc(selectedClass.id)
+    .collection("attendance");
+
+  if (profile.role === "student") {
+    query = query.where("studentId", "==", currentUser.uid);
+  }
+
+  const snap = await query.get();
+  const list = document.getElementById("attendanceList");
+  list.innerHTML = "";
+
+  snap.forEach(doc => {
+    const a = doc.data();
+    const div = document.createElement("div");
+    div.className = "item";
+
+    const heading = document.createElement("strong");
+    heading.textContent = a.studentName;
+
+    const info = document.createElement("p");
+    info.textContent = a.date + " — " + a.status;
+
+    div.append(heading, info);
+    list.append(div);
+  });
+
+  document.getElementById("attendanceCount").textContent =
+    snap.size;
+}
+
+async function addAttendance() {
+  try {
+    if (profile.role !== "teacher") return;
+    if (!selectedClass) return message("Select a class first.");
+
+    const name = document.getElementById("attName").value.trim();
+    const date = document.getElementById("attDate").value;
+    const status = document.getElementById("attStatus").value;
+
+    if (!name || !date) {
+      return message("Enter the student name and date.");
+    }
+
+    const member = classMembers.find(m =>
+      m.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (!member) {
+      return message("Enter the name of a student in this class.");
+    }
+
+    await db.collection("classes").doc(selectedClass.id)
+      .collection("attendance").add({
+        studentId: member.uid,
+        studentName: member.name,
+        date,
+        status,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+
+    document.getElementById("attName").value = "";
+    message("Attendance saved.");
+    await loadAttendance();
+  } catch (error) {
+    message(error.message);
+  }
+}
+
+async function loadComplaints() {
+  if (!selectedClass) return;
+
+  let query = db.collection("classes").doc(selectedClass.id)
+    .collection("complaints");
+
+  if (profile.role === "student") {
+    query = query.where("studentId", "==", currentUser.uid);
+  }
+
+  const snap = await query.get();
+  const list = document.getElementById("complaintList");
+  list.innerHTML = "";
+
+  snap.forEach(doc => {
+    const complaint = doc.data();
+    const div = document.createElement("div");
+    div.className = "item";
+
+    const heading = document.createElement("strong");
+    heading.textContent = complaint.studentName;
+
+    const details = document.createElement("p");
+    details.textContent = complaint.text;
+
+    const status = document.createElement("span");
+    status.className = "tag";
+    status.textContent = complaint.status;
+
+    div.append(heading, details, status);
+
+    if (profile.role === "teacher") {
+      const select = document.createElement("select");
+
+      ["Pending", "Reviewed", "Resolved"].forEach(value => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value;
+        select.append(option);
+      });
+
+      select.value = complaint.status;
+
+      select.onchange = async () => {
+        await doc.ref.update({ status: select.value });
+        message("Complaint status updated.");
+      };
+
+      div.append(select);
+    }
+
+    list.append(div);
+  });
+
+  document.getElementById("complaintCount").textContent =
+    snap.size;
+}
+
+async function addComplaint() {
+  try {
+    if (!selectedClass) return message("Select a class first.");
+
+    const text = document.getElementById("complaintText")
+      .value.trim();
+
+    if (!text) return message("Write your complaint first.");
+
+    if (profile.role !== "student") {
+      return message("Only students can submit complaints.");
+    }
+
+    await db.collection("classes").doc(selectedClass.id)
+      .collection("complaints").add({
+        studentId: currentUser.uid,
+        studentName: profile.name,
+        text,
+        status: "Pending",
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+
+    document.getElementById("complaintText").value = "";
+    message("Your complaint was submitted.");
+    await loadComplaints();
+  } catch (error) {
+    message(error.message);
+  }
+}
+
+async function loadAnnouncements() {
+  if (!selectedClass) return;
+
+  const snap = await db.collection("classes")
+    .doc(selectedClass.id).collection("announcements").get();
+
+  const list = document.getElementById("announcementList");
+  list.innerHTML = "";
+
+  snap.forEach(doc => {
+    const a = doc.data();
+    const div = document.createElement("div");
+    div.className = "item";
+
+    const heading = document.createElement("strong");
+    heading.textContent = "Announcement";
+
+    const details = document.createElement("p");
+    details.textContent = a.text;
+
+    div.append(heading, details);
+
+    if (profile.role === "teacher") {
+      const del = document.createElement("button");
+      del.className = "danger";
+      del.textContent = "Delete";
+      del.onclick = () => deleteItem("announcements", doc.id);
+      div.append(del);
+    }
+
+    list.append(div);
+  });
+}
+
+async function addAnnouncement() {
+  try {
+    if (profile.role !== "teacher") return;
+    if (!selectedClass) return message("Select a class first.");
+
+    const text = document.getElementById("announcementText")
+      .value.trim();
+
+    if (!text) return message("Write an announcement first.");
+
+    await db.collection("classes").doc(selectedClass.id)
+      .collection("announcements").add({
+        text,
+        teacherName: profile.name,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+
+    document.getElementById("announcementText").value = "";
+    message("Announcement published.");
+    await loadAnnouncements();
+  } catch (error) {
+    message(error.message);
+  }
+}
+
+async function deleteItem(collection, id) {
+  try {
+    if (profile.role !== "teacher" || !selectedClass) return;
+
+    await db.collection("classes").doc(selectedClass.id)
+      .collection(collection).doc(id).delete();
+
+    message("Item deleted.");
+    if (collection === "homework") await loadHomework();
+    if (collection === "announcements") await loadAnnouncements();
+  } catch (error) {
+    message(error.message);
+  }
+}
 </script>
+
 </body>
 </html>
