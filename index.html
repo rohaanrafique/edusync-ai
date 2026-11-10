@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+even<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1027,6 +1027,26 @@ async function deleteItem(collection, id) {
   }
 }
 </script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
+  const firebaseConfig = {
+    apiKey: "AIzaSyAVuNesxXNcUxv4rJhkxR0olr3k6AXcuUo",
+    authDomain: "edusync-ai-f6553.firebaseapp.com",
+    projectId: "edusync-ai-f6553",
+    storageBucket: "edusync-ai-f6553.firebasestorage.app",
+    messagingSenderId: "289452296464",
+    appId: "1:289452296464:web:147e54aca3c735633c3d95",
+    measurementId: "G-6BWKYWK1RD"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  console.log("EduSync AI Firebase connected!");
+</script>
 </body>
 </html>
